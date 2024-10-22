@@ -1,8 +1,8 @@
 #spring.application.name=springboot-hello
 
 server:
-  port: 8001
+  port: 8080
 
-spring:
-  profiles:
-    active: dev
+#spring:
+#  profiles:
+#    active: dev
