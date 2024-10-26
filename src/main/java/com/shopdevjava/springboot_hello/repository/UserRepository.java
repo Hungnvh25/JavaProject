@@ -3,6 +3,8 @@ package com.shopdevjava.springboot_hello.repository;
 import com.shopdevjava.springboot_hello.entity.user.UserEntity;
 import jakarta.transaction.Transactional;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,6 +19,12 @@ import java.util.List;
 //public interface userRepository {
 //}
 public interface UserRepository extends JpaRepository<UserEntity,Long> , JpaSpecificationExecutor<UserEntity> {
+    // use pageable
+
+//    Page<UserEntity> findByUserName(String name, Pageable pageable);
+    Page<UserEntity> findByUserNameContaining(String userName, Pageable pageable);
+
+
     // find user and email
     /*
     ->findByUserNameAndUserEmail->UserNameAndUserEmail->userNameAndUserEmail->userNameAnduserEmail
@@ -24,7 +32,7 @@ public interface UserRepository extends JpaRepository<UserEntity,Long> , JpaSpec
      */
     UserEntity findByUserNameAndUserEmail(String userName,String userEmail);
 
-    UserEntity findByUserName(String userName);
+//    UserEntity findByUserName(String userName);
 
     /**
      * Where userName like %?
