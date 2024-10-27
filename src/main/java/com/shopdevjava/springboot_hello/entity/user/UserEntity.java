@@ -1,9 +1,14 @@
 package com.shopdevjava.springboot_hello.entity.user;
 
+import com.shopdevjava.springboot_hello.controller.user.CCCDEntity;
+import com.shopdevjava.springboot_hello.entity.feed.FeedEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -20,4 +25,12 @@ public class UserEntity {
     @Column(columnDefinition = "varchar(225) comment 'user email'",nullable = false,unique = true)
 
     private String userEmail;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
+    @ToString.Exclude
+    private List<FeedEntity> feedList;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cccdId")
+    private CCCDEntity cccd;
 }
