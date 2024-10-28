@@ -1,4 +1,7 @@
 package com.shopdevjava.springboot_hello.repository;
 
-public class OrderRepository {
+import com.shopdevjava.springboot_hello.entity.OrderEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrderRepository extends JpaRepository<OrderEntity,Long> {
 }
